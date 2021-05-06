@@ -13,7 +13,7 @@ export class AuthMiddleware implements NestMiddleware {
         }
 
         try {
-            jwt?.verify(token, "dasecret");
+            jwt?.verify(token, process.env.JWT_SECRET);
         } catch (e) {
             throw new UnauthorizedError("Authentication failed.");
         }

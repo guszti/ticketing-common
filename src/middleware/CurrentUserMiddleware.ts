@@ -6,7 +6,7 @@ import * as jwt from "jsonwebtoken";
 @Injectable()
 export class CurrentUserMiddleware implements NestMiddleware {
     use(req: Request, res: Response, next: NextFunction) {
-        const jwtPayload = jwt.verify(req.cookies["jwt"], "dasecret");
+        const jwtPayload = jwt.verify(req.cookies["jwt"], process.env.JWT_SECRET);
 
         req["user"] = {
             id: jwtPayload["userId"],
